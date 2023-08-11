@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -10,6 +10,10 @@
     <ProjectReference Include="..\CatalogCA.Application\CatalogCA.Application.csproj" />
     <ProjectReference Include="..\CatalogCA.Domain\CatalogCA.Domain.csproj" />
     <ProjectReference Include="..\CatalogCA.Infrastructure\CatalogCA.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IoC\" />
   </ItemGroup>
 
 </Project>
