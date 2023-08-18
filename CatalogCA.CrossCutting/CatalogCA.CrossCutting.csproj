@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CatalogCA.Application\CatalogCA.Application.csproj" />
-    <ProjectReference Include="..\CatalogCA.Domain\CatalogCA.Domain.csproj" />
-    <ProjectReference Include="..\CatalogCA.Infrastructure\CatalogCA.Infrastructure.csproj" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="IoC\" />
+    <ProjectReference Include="..\CatalogCA.Application\CatalogCA.Application.csproj" />
+    <ProjectReference Include="..\CatalogCA.Domain\CatalogCA.Domain.csproj" />
+    <ProjectReference Include="..\CatalogCA.Infrastructure\CatalogCA.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
