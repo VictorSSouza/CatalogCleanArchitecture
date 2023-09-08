@@ -29,7 +29,7 @@ namespace CatalogCA.Domain.Entities
             DomainExceptionValid.When(string.IsNullOrEmpty(imageUrl),
                 "Nome da imagem inválido, o nome da imagem é obrigatório");
             DomainExceptionValid.When(imageUrl.Length < 5,
-                "Nome da imagem inválido, deve ter no minimo 3 caracteres");
+                "Nome da imagem inválido, deve ter no minimo 5 caracteres");
 
             Name = name;
             ImageUrl = imageUrl;

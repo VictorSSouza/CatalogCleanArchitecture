@@ -68,7 +68,7 @@ namespace CatalogCA.API.Controllers
 
             if(id != categoryDTO.Id)
             {
-                return BadRequest();
+                return BadRequest("Id inválido");
             }
             await _categoryService.Update(categoryDTO);
             return Ok(categoryDTO);
