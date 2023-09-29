@@ -9,6 +9,7 @@ namespace CatalogCA.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddCors();
 
             builder.Services.AddControllers();
             builder.Services.AddInfrastructureAPI(builder.Configuration);
@@ -24,6 +25,13 @@ namespace CatalogCA.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:3000");
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+            });
 
             app.UseHttpsRedirection();
 
