@@ -1,4 +1,6 @@
 ﻿using CatalogCA.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CatalogCA.Infrastructure.Context
 {
-    public class CatalogDbContext : DbContext
+    public class CatalogDbContext : IdentityDbContext<IdentityUser>
     {
         public CatalogDbContext(DbContextOptions<CatalogDbContext> options): base(options)
         {

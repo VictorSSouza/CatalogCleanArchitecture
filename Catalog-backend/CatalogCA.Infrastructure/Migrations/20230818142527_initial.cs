@@ -44,7 +44,7 @@ namespace CatalogCA.Infrastructure.Migrations
                     ImageUrl = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Stock = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    Registerdate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    RegisterDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

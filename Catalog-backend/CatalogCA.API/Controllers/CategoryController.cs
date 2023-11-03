@@ -1,6 +1,8 @@
 ﻿using CatalogCA.Application.DTOs;
 using CatalogCA.Application.Interfaces;
 using CatalogCA.Domain.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,6 +11,7 @@ namespace CatalogCA.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CategoryController : ControllerBase
     {
 
@@ -19,6 +22,8 @@ namespace CatalogCA.API.Controllers
         }
         // GET: api/<CategoryController>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> Get()
         {
             try 
@@ -47,6 +52,8 @@ namespace CatalogCA.API.Controllers
 
         // POST api/<CategoryController>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Post([FromBody] CategoryDTO categoryDTO)
         {
             if(!ModelState.IsValid)

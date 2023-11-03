@@ -19,7 +19,7 @@ namespace CatalogCA.Infrastructure.EntitiesConfiguration
             builder.Property(x => x.Price).HasPrecision(18,2).IsRequired();
             builder.Property(x => x.ImageUrl).HasMaxLength(250);
             builder.Property(x => x.Stock).HasDefaultValue(1).IsRequired();
-            builder.Property(x => x.Registerdate).IsRequired();
+            builder.Property(x => x.RegisterDate).IsRequired();
 
             builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
         }

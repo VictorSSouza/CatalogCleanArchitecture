@@ -4,9 +4,9 @@ namespace CatalogCA.Domain.Entities
 {
     public sealed class Product : Entity
     {
-        public Product(string name, string description, decimal price, string imageUrl, int stock, DateTime registerdate) 
+        public Product(string name, string description, decimal price, string imageUrl, int stock, DateTime registerDate) 
         {
-            ValidateDomain(name, description,price, imageUrl, stock, registerdate);
+            ValidateDomain(name, description,price, imageUrl, stock, registerDate);
         }
 
         public string? Name { get; private set; }
@@ -14,14 +14,14 @@ namespace CatalogCA.Domain.Entities
         public decimal Price { get; private set; }
         public string? ImageUrl { get; private set; }
         public int Stock { get; private set; }
-        public DateTime Registerdate { get; private set; }
+        public DateTime RegisterDate { get; private set; }
 
-        public void Update(string name, string description, decimal price, string imageUrl, int stock, DateTime registerdate, int categoryId)
+        public void Update(string name, string description, decimal price, string imageUrl, int stock, DateTime registerDate, int categoryId)
         {
-            ValidateDomain(name, description, price, imageUrl, stock, registerdate);
+            ValidateDomain(name, description, price, imageUrl, stock, registerDate);
             CategoryId = categoryId;
         }
-        private void ValidateDomain(string name, string description, decimal price, string imageUrl, int stock, DateTime registerdate)
+        private void ValidateDomain(string name, string description, decimal price, string imageUrl, int stock, DateTime registerDate)
         {
             DomainExceptionValid.When(string.IsNullOrEmpty(name),
                 "Nome inválido, o nome é obrigatório");
@@ -43,7 +43,7 @@ namespace CatalogCA.Domain.Entities
             Price = price;
             ImageUrl = imageUrl;
             Stock = stock;
-            Registerdate = registerdate;
+            RegisterDate = registerDate;
         }
 
         public int CategoryId { get; set; }

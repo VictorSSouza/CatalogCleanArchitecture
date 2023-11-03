@@ -1,5 +1,7 @@
 ﻿using CatalogCA.Application.DTOs;
 using CatalogCA.Application.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -8,6 +10,7 @@ namespace CatalogCA.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
@@ -19,6 +22,8 @@ namespace CatalogCA.API.Controllers
 
         // GET : api/<ProductController>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> Get()
         {
             try
@@ -47,6 +52,8 @@ namespace CatalogCA.API.Controllers
 
         // POST : api/<ProductController>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Post([FromBody] ProductDTO productDTO)
         {
             if(!ModelState.IsValid)

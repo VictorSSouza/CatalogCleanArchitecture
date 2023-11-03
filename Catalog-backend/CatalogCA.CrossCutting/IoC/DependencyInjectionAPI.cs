@@ -4,14 +4,13 @@ using CatalogCA.Application.Services;
 using CatalogCA.Domain.Interfaces;
 using CatalogCA.Infrastructure.Context;
 using CatalogCA.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CatalogCA.CrossCutting.IoC
 {
@@ -22,6 +21,25 @@ namespace CatalogCA.CrossCutting.IoC
             services.AddDbContext<CatalogDbContext>(options =>
                     options.UseMySql(configuration.GetConnectionString("DefaultConnection"),
                                      new MySqlServerVersion(new Version(8, 0, 32))));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<CatalogDbContext>()
+                    .AddDefaultTokenProviders();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateLifetime= true,
+                            ValidateIssuerSigningKey = true,
+                            ValidIssuer = configuration["Jwt:Issuer"],
+                            ValidAudience = configuration["Jwt:Audience"],
+                            IssuerSigningKey = new SymmetricSecurityKey
+                                (Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+                        };
+                    });
+            services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
