@@ -10,6 +10,7 @@ namespace CatalogCA.Application.Interfaces
     public interface IProductService
     {
         Task<IEnumerable<ProductDTO>> GetProducts();
+	    Task<IEnumerable<ProductDTO>> GetProductsByName(string? name);
         Task<ProductDTO> GetById(int? id);
         Task Add(ProductDTO productDTO);
         Task Update(ProductDTO productDTO);

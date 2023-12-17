@@ -59,5 +59,29 @@ namespace CatalogCA.Infrastructure.Repositories
             await _productContext.SaveChangesAsync();
             return product;
         }
+
+        public async Task<IEnumerable<Product>> GetByNameAsync(string? name)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    var products = await _productContext.Products.Where(n => n.Name.Contains(name)).ToListAsync();
+                    return products;
+                }
+                else
+                {
+                    var products = await GetAsync();
+                    return products;
+                }
+            }
+            catch (Exception ex)
+            {
+                var error1 = ex.Message;
+                var error2 = ex.StackTrace;
+                var error3 = ex.InnerException;
+                throw;
+            }
+        }
     }
 }

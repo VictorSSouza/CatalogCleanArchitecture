@@ -28,8 +28,29 @@ namespace CatalogCA.API.Controllers
         {
             try 
             {
-            var categories = await _categoryService.GetCategories();
-            return Ok(categories);
+                var categories = await _categoryService.GetCategories();
+                return Ok(categories);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        // GET: api/<CategoryController>
+        [HttpGet("OrderByName")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetByName([FromQuery]string? name)
+        {
+            try
+            {
+                var categories = await _categoryService.GetCategoriesByName(name);
+
+                if(categories == null)
+                    return NotFound($"Categorias não encontradas com esse nome = {name}");
+
+                return Ok(categories);
             }
             catch
             {
@@ -39,6 +60,7 @@ namespace CatalogCA.API.Controllers
 
         // GET api/<CategoryController>/5
         [HttpGet("{id}", Name = "GetCategoria")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CategoryDTO>> Get(int id)
         {
             var category = await _categoryService.GetById(id);
@@ -66,6 +88,7 @@ namespace CatalogCA.API.Controllers
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Put(int id, [FromBody] CategoryDTO categoryDTO)
         {
             if (!ModelState.IsValid)
@@ -84,6 +107,7 @@ namespace CatalogCA.API.Controllers
 
         // DELETE api/<CategoryController>/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Category>> Delete(int id)
         {
             var categoryDTO = await _categoryService.GetById(id);

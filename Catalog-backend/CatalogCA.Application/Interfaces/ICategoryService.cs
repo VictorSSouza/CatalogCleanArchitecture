@@ -10,6 +10,7 @@ namespace CatalogCA.Application.Interfaces
     public interface ICategoryService
     {
         Task<IEnumerable<CategoryDTO>> GetCategories();
+	    Task<IEnumerable<CategoryDTO>> GetCategoriesByName(string? name);
         Task<CategoryDTO> GetById(int? id);
         Task Add(CategoryDTO categoryDTO);
         Task Update(CategoryDTO categoryDTO);

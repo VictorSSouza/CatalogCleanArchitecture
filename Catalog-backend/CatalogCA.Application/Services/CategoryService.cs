@@ -59,5 +59,21 @@ namespace CatalogCA.Application.Services
             var categoryEnt = _mapper.Map<Category>(categoryDTO);
             await _categoryRepository.PutAsync(categoryEnt);
         }
+
+        public async Task<IEnumerable<CategoryDTO>> GetCategoriesByName(string? name)
+        {
+            try
+            {
+                var categoriesEnt = await _categoryRepository.GetByNameAsync(name);
+                var categoriesDTO = _mapper.Map<IEnumerable<CategoryDTO>>(categoriesEnt);
+
+                return categoriesDTO;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+    
+        }
     }
 }

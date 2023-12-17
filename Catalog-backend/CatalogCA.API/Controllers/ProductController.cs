@@ -1,5 +1,6 @@
 ﻿using CatalogCA.Application.DTOs;
 using CatalogCA.Application.Interfaces;
+using CatalogCA.Application.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,6 +30,27 @@ namespace CatalogCA.API.Controllers
             try
             {
                 var products = await _productService.GetProducts();
+                return Ok(products);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        // GET: api/<CategoryController>
+        [HttpGet("OrderByName")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetByName([FromQuery] string? name)
+        {
+            try
+            {
+                var products = await _productService.GetProductsByName(name);
+
+                if (products == null)
+                    return NotFound($"Produtos não encontradas com esse nome = {name}");
+
                 return Ok(products);
             }
             catch

@@ -41,6 +41,30 @@ namespace CatalogCA.Infrastructure.Repositories
             }
         }
 
+        public async Task<IEnumerable<Category>> GetByNameAsync(string? name)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    var categories = await _categoryContext.Categories.Where(n => n.Name.Contains(name)).ToListAsync();
+                    return categories;
+                }
+                else
+                {
+                    var categories = await GetAsync();
+                    return categories;
+                }
+            }
+            catch (Exception ex)
+            {
+                var error1 = ex.Message;
+                var error2 = ex.StackTrace;
+                var error3 = ex.InnerException;
+                throw;
+            }
+        }
+
         public async Task<Category> GetByIdAsync(int? id)
         {
             return await _categoryContext.Categories.FindAsync(id);

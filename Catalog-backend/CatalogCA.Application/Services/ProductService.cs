@@ -59,5 +59,21 @@ namespace CatalogCA.Application.Services
             var productEnt = _mapper.Map<Product>(productDTO);
             await _productRepository.PutAsync(productEnt);
         }
+
+        public async Task<IEnumerable<ProductDTO>> GetProductsByName(string? name)
+        {
+            try
+            {
+                var productsEnt = await _productRepository.GetByNameAsync(name);
+                var productsDTO = _mapper.Map<IEnumerable<ProductDTO>>(productsEnt);
+
+                return productsDTO;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
     }
 }
