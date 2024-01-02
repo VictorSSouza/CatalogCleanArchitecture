@@ -1,4 +1,4 @@
-.new-category-container{
+.new-object-container{
     width: 100%;
     max-width: 1120px;
     height: 100vh;
@@ -9,7 +9,7 @@
     justify-content: space-between;
 }
 
-.new-category-container .content{
+.new-object-container .content{
     width: 100%;
     padding: 96px;
     background: #FFFFFf;
@@ -21,40 +21,40 @@
     align-items: center;
 }
 
-.new-category-container .content section{
+.new-object-container .content section{
     width: 100%;
     max-width: 380px;
 }
 
-.new-category-container section.form{
+.new-object-container section.form{
     width: 100%;
     max-width: 350px;
     margin-right: 30px;
 }
 
-.new-category-container section.form img{
+.new-object-container section.form img{
     width: 45%;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
 
-.new-category-container .content section h1{
+.new-object-container .content section h1{
     margin: 64px 0 32px;
     font-size: 32px;
 }
 
-.new-category-container .content section p{
+.new-object-container .content section p{
     font-size: 10px;
     color: #737380;
     line-height: 32px;
 }
 
-.new-category-container .content form{
+.new-object-container .content form{
     width: 100%;
     max-width: 450px;
 }
 
-.new-category-container .content form input{
+.new-object-container .content form input{
     margin-top: 8px; 
 }

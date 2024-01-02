@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../../services/api";
-import "./styles.css";
+import "../EntitiesStyles/newObjectStyles.css";
 import { FiUserPlus, FiCornerDownLeft } from "react-icons/fi";
 
 export default function NewCategory() {
@@ -26,7 +26,7 @@ export default function NewCategory() {
 			return;
 		else
 			loadCategory();
-	}, categoryId)
+	}, [categoryId])
 
 	async function loadCategory() {
 		try {
@@ -36,7 +36,7 @@ export default function NewCategory() {
 			setImageUrl(response.data.imageUrl);
 		} catch (error) {
 			alert("Erro ao recuperar a categoria" + error);
-			navigate("/Categories")
+			navigate("/Categories");
 		}
 	}
 
@@ -62,7 +62,7 @@ export default function NewCategory() {
 	}
 
 	return (
-		<div className="new-category-container">
+		<div className="new-object-container">
 			<div className="content">
 				<section className="form">
 					<FiUserPlus size="105" color="#17202a" />

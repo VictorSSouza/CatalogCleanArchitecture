@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./styles.css";
+import "../EntitiesStyles/objectStyles.css";
 import api from "../../services/api";
-import { FiXCircle, FiEdit, FiUserX, FiCornerDownRight } from "react-icons/fi";
-import LogoInsert from "../../assets/formulario.png"
+import { FiEdit, FiUserX } from "react-icons/fi";
+import Nav from "../Nav";
+import Logout from "../Logout";
 
 export default function Categories() {
 
@@ -12,7 +13,6 @@ export default function Categories() {
     const [searchInput, setSearchInput] = useState('');
     const [filter, setFilter] = useState([]);
 
-    const email = localStorage.getItem('email');
     const token = localStorage.getItem('token');
 
     const navigate = useNavigate();
@@ -44,18 +44,6 @@ export default function Categories() {
             }, token)
     })
 
-    async function logout() {
-        try {
-            localStorage.clear();
-            localStorage.setItem('token', '')
-            authorization.headers = '';
-            navigate('/');
-        }
-        catch (error) {
-            alert("Não é possível fazer o logout" + error);
-        }
-    }
-
     async function editCategory(id) {
         try {
             navigate(`/Category/new/${id}`);
@@ -76,19 +64,12 @@ export default function Categories() {
     }
 
     return (
-        <div className="category-container">
+        <div className="object-container">
             <h1>Lista de Categorias</h1>
             <header>
-                <img src={LogoInsert} alt="Cadastro" />
-                <span>Bem-vindo, <strong>{email}</strong>!</span>
-                <Link className="button" to="/Products">
-                    <FiCornerDownRight size={25} color="#17202a" />
-                    Lista de Produtos
-                </Link>
+                <Nav/>
                 <Link className="button" to="/Category/new/0">Nova Categoria</Link>
-                <button onClick={logout} type="button" >
-                    <FiXCircle size={40} color="#17202a" />
-                </button>
+                <Logout />
             </header>
             <form>
                 <input type="text" placeholder="Filtrar Categoria por nome"
