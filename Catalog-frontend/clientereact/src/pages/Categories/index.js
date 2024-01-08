@@ -54,7 +54,7 @@ export default function Categories() {
 
     async function deleteCategory(id){
         try {
-            if(window.confirm('Deseja deletar o aluno de id = '+ id + '?')){
+            if(window.confirm('Deseja deletar a categoria de id = '+ id + '?')){
                 await api.delete(`api/Category/${id}`, authorization);
                 setCategories(categories.filter(category => category.id !== id));
             }

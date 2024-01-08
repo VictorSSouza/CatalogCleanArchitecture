@@ -38,7 +38,7 @@ namespace CatalogCA.API.Controllers
             }
         }
 
-        // GET: api/<CategoryController>
+        // GET: api/<ProductController>
         [HttpGet("OrderByName")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

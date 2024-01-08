@@ -17,7 +17,7 @@ export default function Login(){
 
         const data = {
             email, password
-        };
+        }
 
         try{
 
@@ -30,7 +30,7 @@ export default function Login(){
             navigate('/Categories');
 
         }catch(error){
-            alert('O login falhou ' + error)
+            alert('O login falhou ' + error);
         }
     }
 
@@ -39,7 +39,7 @@ export default function Login(){
             <section className="form">
                 <img src={ImgLogin} alt="login" id="img1" />
                 <form onSubmit={login}>
-                    <h1>Cadastro</h1>
+                    <h1>Login</h1>
                     <input  placeholder="Email"
                         value={email}
                         onChange={e=>setEmail(e.target.value)}
