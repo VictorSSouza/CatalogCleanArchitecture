@@ -27,7 +27,7 @@ export default function Logout() {
     
     return (
         <>
-          <button onClick={logout} type="button" >
+          <button onClick={logout} title="Sair da Conta" type="button" >
             <FiXCircle size={40} color="#17202a" />
           </button>
         </>

@@ -30,7 +30,16 @@
     margin-bottom: 32px;
 }
 
-#img1{
+.button-container{
+    display: flex;
+    gap: 30px;
+    margin: 35px auto;
+}
+
+.logoimg{
     width: 80%;
     height: auto;
+}
+.text-valid{
+    color: red;
 }

@@ -1,14 +1,16 @@
 import React, {useState} from "react";
-import "./styles.css";
+import "../EntitiesStyles/signStyles.css";
+import Validation from "./loginValidation.js";
 import api from "../../services/api";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
-import ImgLogin from "../../assets/login.png"
+import ImgLogin from "../../assets/login.png";
 
 export default function Login(){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState({});
 
     const navigate = useNavigate();
 
@@ -21,7 +23,7 @@ export default function Login(){
 
         try{
 
-            const response = await api.post('api/account/loginuser', data);
+            const response = await api.post('api/Account/LoginUser', data);
 
             localStorage.setItem('email', email);
             localStorage.setItem('token', response.data.token);
@@ -30,6 +32,7 @@ export default function Login(){
             navigate('/Categories');
 
         }catch(error){
+            setErrors(Validation(data));
             alert('O login falhou ' + error);
         }
     }
@@ -37,18 +40,23 @@ export default function Login(){
     return(
         <div className="login-container">
             <section className="form">
-                <img src={ImgLogin} alt="login" id="img1" />
+                <img src={ImgLogin} alt="Cadeado" className="logoimg" />
                 <form onSubmit={login}>
                     <h1>Login</h1>
-                    <input  placeholder="Email"
+                    {errors.email && <span className="text-valid">{errors.email}</span>}
+                    <input type="text" name="email" placeholder="Email"
                         value={email}
                         onChange={e=>setEmail(e.target.value)}
                     />
+                    {errors.password && <span className="text-valid">{errors.password}</span>}
                     <input type="password" placeholder="Password"
                         value={password}
                         onChange={e=>setPassword(e.target.value)}
                     />
-                    <button className="button" type="submit">Login</button>
+                    <div className="button-container">
+                        <button className="button" type="submit">Acessar</button>
+                        <Link className="button" to="/Signup">Cadastre-se</Link>
+                    </div>
                 </form>
             </section>
         </div>

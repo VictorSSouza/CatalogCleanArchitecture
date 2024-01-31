@@ -87,10 +87,10 @@ export default function Products(){
                         <b>Data de Registro: </b>{product.registerDate} <br />
                         <b>Id da Categoria: </b>{product.categoryId} <br />
 
-                        <button type="button" onClick={() => editProduct(product.id)}>
+                        <button type="button" title="Editar" onClick={() => editProduct(product.id)}>
                             <FiEdit size={25} color="#17202a" />
                         </button>
-                        <button type="button" onClick={() => deleteProduct(product.id)}>
+                        <button type="button" title="Excluir" onClick={() => deleteProduct(product.id)}>
                             <FiUserX size={25} color="#17202a" />
                         </button>
                     </li>
@@ -108,10 +108,10 @@ export default function Products(){
                        <b>Data de Registro: </b>{product.registerDate} <br />
                        <b>Id da Categoria: </b>{product.categoryId} <br />
    
-                       <button type="button" onClick={() => editProduct(product.id)}>
+                       <button type="button" title="Editar" onClick={() => editProduct(product.id)}>
                            <FiEdit size={25} color="#17202a" />
                        </button>
-                       <button type="button" onClick={() => deleteProduct(product.id)}>
+                       <button type="button" title="Excluir" onClick={() => deleteProduct(product.id)}>
                            <FiUserX size={25} color="#17202a" />
                        </button>
                    </li>

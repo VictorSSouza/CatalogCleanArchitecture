@@ -80,12 +80,12 @@ export default function Categories() {
                 <ul>
                 {filter.map(category => (
                     <li key={category.id}>
-                        <b>Nome:</b>{category.name}<br />
-                        <b>Url da imagem:</b>{category.imageUrl}<br />
-                        <button onClick={() => editCategory(category.id)} type="button">
+                        <b>Nome: </b>{category.name}<br /><br />
+                        <b>Url da imagem: </b>{category.imageUrl}<br /><br />
+                        <button onClick={() => editCategory(category.id)} type="button" title="Editar">
                             <FiEdit size={25} color="#17202a" />
                         </button>
-                        <button onClick={() => deleteCategory(category.id)} type="button">
+                        <button onClick={() => deleteCategory(category.id)} type="button" title="Excluir">
                             <FiUserX size={25} color="#17202a" />
                         </button>
                     </li>
@@ -95,12 +95,12 @@ export default function Categories() {
                 <ul>
                 {categories.map(category => (
                     <li key={category.id}>
-                        <b>Nome:</b>{category.name}<br />
-                        <b>Url da imagem:</b>{category.imageUrl}<br />
-                        <button onClick={() => editCategory(category.id)} type="button">
+                        <b>Nome: </b>{category.name}<br /><br />
+                        <b>Url da imagem: </b>{category.imageUrl}<br /><br />
+                        <button onClick={() => editCategory(category.id)} type="button" title="Editar">
                             <FiEdit size={25} color="#17202a" />
                         </button>
-                        <button onClick={() => deleteCategory(category.id)} type="button">
+                        <button onClick={() => deleteCategory(category.id)} type="button" title="Excluir">
                             <FiUserX size={25} color="#17202a" />
                         </button>
                     </li>
