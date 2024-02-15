@@ -26,6 +26,7 @@ export default function SignUp(){
             localStorage.setItem('email', response.data.email);
             localStorage.setItem('password', response.data.password);
             localStorage.setItem('confirmPassword', response.data.password);
+            alert('Usuário cadastrado!');
         }catch(error){
             setErrors(Validation(data));
             alert('O cadastro falhou '+error);
@@ -43,13 +44,14 @@ export default function SignUp(){
                         value={email}
                         onChange={e=>setEmail(e.target.value)}
                     />
+                    <p>A senha deve ter no mínimo 10 caracteres</p>
                     {errors.password && <span className="text-valid">{errors.password}</span>}
-                    <input type="password" placeholder="Password"
+                    <input type="password" name="password" placeholder="Senha"
                         value={password}
                         onChange={e=>setPassword(e.target.value)}
                     />
                     {errors.confirmPassword && <span className="text-valid">{errors.confirmPassword}</span>}
-                    <input type="password" placeholder="Confirm password"
+                    <input type="password" name="confirmPassword" placeholder="Confirmar senha"
                         value={confirmPassword}
                         onChange={e=>setConfirmPassword(e.target.value)}
                     />

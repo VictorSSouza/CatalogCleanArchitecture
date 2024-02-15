@@ -49,7 +49,7 @@ export default function Login(){
                         onChange={e=>setEmail(e.target.value)}
                     />
                     {errors.password && <span className="text-valid">{errors.password}</span>}
-                    <input type="password" placeholder="Password"
+                    <input type="password" name="password" placeholder="Senha"
                         value={password}
                         onChange={e=>setPassword(e.target.value)}
                     />

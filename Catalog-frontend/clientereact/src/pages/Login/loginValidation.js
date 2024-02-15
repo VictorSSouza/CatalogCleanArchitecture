@@ -10,7 +10,10 @@ export default function Validation(data){
     }
 
     if(!data.confirmPassword){
-        errors.confirmPassword = "Senha é obrigatória";
+        errors.confirmPassword = "Confirme a senha";
+    }
+    if(data.confirmPassword !== data.password){
+        errors.confirmPassword = "As senhas são diferentes";
     }
 
     return errors;
